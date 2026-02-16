@@ -1,4 +1,4 @@
- let gameseq=[];
+let gameseq=[];
  let userseq=[];
  let btns=['yellow','red','purple','green'];
 
@@ -6,13 +6,15 @@
  let level=0;
  let h2=document.querySelector("h2");
 
- document.addEventListener("keypress",function(){
-    if(started== false){
-        console.log("game is started");
-        started=true;
-        levelup();
-    }
- });
+document.addEventListener("keydown", startGame);
+document.addEventListener("touchstart", startGame);
+
+function startGame(){
+   if(!started){
+      started = true;
+      levelup();
+   }
+};
  
  function gameflash(btn){
     btn.classList.add("flash");
@@ -30,8 +32,8 @@
  function levelup(){
     userseq=[];
     level++;
-    h2.innerText=`Level${level}`;
-    let randidx=Math.floor(Math.random()*3);
+    h2.innerText=`Level ${level}`;
+    let randidx = Math.floor(Math.random() * 3);
     let randcolor=btns[randidx];
     let randbtn=document.querySelector(`.${randcolor}`);
     // console.log(randidx);
@@ -50,7 +52,7 @@
         }
         console.log("same value")
     }else{
-        h2.innerHTML=`Game Over!! your score was <b>${level}</b> <br> press any key to start`;
+        h2.innerHTML=`Game Over!! your score was <b>${level}</b> <br> Tap screen or press any key to start`;
         document.querySelector("body").style.backgroundColor="red";
         setTimeout(function(){
             document.querySelector("body").style.backgroundColor="white";
